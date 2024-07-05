@@ -3,7 +3,7 @@ pipeline {
 	tools {
 		jdk 'Java17'
 		maven 'Maven3'
-		docker 'docker-install'
+		dockerTool 'docker-install'
 	}
 	environment {
 	    APP_NAME = "register-app-pipeline"
