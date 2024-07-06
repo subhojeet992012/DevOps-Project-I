@@ -57,9 +57,9 @@ pipeline {
             			sh "docker build -t ${IMAGE_NAME} ."
 
            			 // Log in to Docker registry and push images
-            			 withCredentials([string(credentialsId: 'jenkins-docker-token', variable: 'DOCKER_PASSWORD')]) {
+				 withCredentials([usernamePassword(credentialsId: 'jenkins-docker-token', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         	 sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
-                    		 }
+                    		 }	
             			sh "docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:${IMAGE_TAG}"
             			sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             			sh "docker push ${IMAGE_NAME}:latest"
