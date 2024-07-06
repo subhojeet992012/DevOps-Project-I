@@ -57,7 +57,7 @@ pipeline {
             			sh "docker build -t ${IMAGE_NAME} ."
 
            			 // Log in to Docker registry and push images
-            			sh "docker login -u <username> -p ${DOCKER_PASS}"
+            			sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
             			sh "docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:${IMAGE_TAG}"
             			sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
             			sh "docker push ${IMAGE_NAME}:latest"
